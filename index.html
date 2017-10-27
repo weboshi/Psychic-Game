@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>The Psychic Game</title>
+</head>
+
+<body>
+    <h1>The Psychic Game</h1>
+    <p id="wins">Wins:</p>
+    <p id="losses">Losses:</p>
+    <p id="guessesCount">Guesses Left: 9</p>
+    <p id="guesses">Your Guesses So Far:</p>
+
+  <div id="psychicgame">
+
+  </div>
+
+  <script type="text/javascript">
+
+ 
+    var computerLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+    var wins = 0;
+    var losses = 0;
+    var guesses = [];
+    var guessesCount = 9;
+ 
+
+
+    
+    document.onkeyup = function(event) {
+
+ 
+      var userGuess = event.key;
+
+     
+      var computerGuess = computerLetters[Math.floor(Math.random() * computerLetters.length)];
+
+      if (userGuess === computerGuess) {
+          wins++;
+          document.querySelector("#wins").innerHTML = "Wins: " + wins;
+          alert("Your random guess is correct! Really impressive stuff, champ.")
+          guessesCount = 9;
+          guesses = [];
+          document.querySelector("#guesses").innerHTML = "Your Guesses So Far: " + guesses;
+      }
+      else {guessesCount--;
+            document.querySelector("#guessesCount").innerHTML = "Guesses Left: " + guessesCount;
+            guesses.push(userGuess);
+            document.querySelector("#guesses").innerHTML = "Your Guesses So Far: " + guesses;
+        
+      }
+      if (guessesCount === 0) {
+          losses++;
+          document.querySelector("#losses").innerHTML = "Losses: " + losses;
+          alert("You can't guess for");
+          guessesCount = 9;
+          document.querySelector("#guessesCount").innerHTML = "Guesses Left: " + guessesCount;
+          guesses = [];
+          document.querySelector("#guesses").innerHTML = "Your Guesses So Far: " + guesses;
+      }
+    }
+  </script>
+
+</body>
+
+</html>
